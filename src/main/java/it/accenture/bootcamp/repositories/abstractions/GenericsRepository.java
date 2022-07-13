@@ -2,9 +2,6 @@ package it.accenture.bootcamp.repositories.abstractions;
 
 import java.util.Optional;
 
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Repository;
-
 public interface GenericsRepository<K, T> {
     Iterable<T> findAll();
 

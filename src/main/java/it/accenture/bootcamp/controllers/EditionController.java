@@ -1,17 +1,10 @@
 package it.accenture.bootcamp.controllers;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.accenture.bootcamp.dtos.EditionDTO;
-import it.accenture.bootcamp.models.Classroom;
-import it.accenture.bootcamp.models.Course;
-import it.accenture.bootcamp.models.Edition;
 
 @RestController
 @RequestMapping("edition")
