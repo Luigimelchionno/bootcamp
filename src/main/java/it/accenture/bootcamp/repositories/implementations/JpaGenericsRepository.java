@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import it.accenture.bootcamp.repositories.abstractions.GenericsRepository;
 
@@ -32,26 +33,27 @@ public class JpaGenericsRepository<K, T> implements GenericsRepository<K, T> {
 
     @Override
     public void deleteById(K id) {
-        // TODO Auto-generated method stub
-
+        Query q = em.createQuery(String.format("DELETE FROM %s WHERE id=:id", entityClass.getSimpleName()));
+        q.setParameter("id", id);
+        q.executeUpdate();
     }
 
     @Override
     public Optional<T> findById(K id) {
-        // TODO Auto-generated method stub
-        return Optional.empty();
+        @SuppressWarnings("unchecked")
+        T c = (T) em.find(entityClass, id);
+        return c == null ? Optional.empty() : Optional.of(c);
     }
 
     @Override
     public T save(T c) {
-        // TODO Auto-generated method stub
-        return null;
+        T cr = em.merge(c);
+        return cr;
     }
 
     @Override
     public boolean existsById(K id) {
-        // TODO Auto-generated method stub
-        return false;
+        return findById(id).isPresent();
     }
 
 }
