@@ -6,6 +6,8 @@ public class Edition {
     private long id;
     private LocalDate startDate;
     private LocalDate endDate;
+
+    private String courseType;
     private Course course;
     private Classroom classroom;
 

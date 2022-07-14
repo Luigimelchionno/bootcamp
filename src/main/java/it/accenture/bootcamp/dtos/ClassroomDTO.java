@@ -21,8 +21,8 @@ public class ClassroomDTO {
     private boolean isVirtual;
 
     public static ClassroomDTO fromClassroom(Classroom c) {
-        return new ClassroomDTO(c.getId(), c.getName(), c.getCapacity(), c.getSoftware(), c.getHasProjector(),
-                c.getHasMainPc(), c.getIsComputerized(), c.isVirtual());
+        return new ClassroomDTO(c.getId(), c.getName(), c.getCapacity(), c.getConnectionSoftware(), c.getHasProjector(),
+                c.getHasMainComputer(), c.getIsComputerized(), c.isVirtual());
     }
 
     public Classroom toClassroom() {

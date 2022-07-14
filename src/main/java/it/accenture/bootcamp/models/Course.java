@@ -23,12 +23,12 @@ public class Course {
     private long id;
     @Column(name = "TITLE")
     private String title;
-    @Column(name = "DURATION")
-    private Integer duration;
+    @Column(name = "HOURS_COURSE")
+    private Integer hoursCourse;
     @Column(name = "COURSE_LEVEL")
     private String courseLevel;
     @Column(name = "DESCRIPTION")
     private String description;
-    @Column(name = "SECTOR_ID")
-    private long sectorId;
+    @Column(name = "PRICE")
+    private double price;
 }

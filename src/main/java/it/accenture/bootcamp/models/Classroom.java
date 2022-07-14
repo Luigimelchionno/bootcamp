@@ -26,12 +26,12 @@ public class Classroom {
     private String name;
     @Column(name = "CAPACITY")
     private Integer capacity;
-    @Column(name = "SOFTWARE")
-    private String software;
-    @Column(name = "PROJECTOR")
+    @Column(name = "CONNECTION_SOFTWARE")
+    private String connectionSoftware;
+    @Column(name = "HAS_PROJECTOR")
     private Boolean hasProjector;
-    @Column(name = "MAIN_PC")
-    private Boolean hasMainPc;
+    @Column(name = "HAS_MAIN_COMPUTER")
+    private Boolean hasMainComputer;
     @Column(name = "IS_COMPUTERIZED")
     private Boolean isComputerized;
     @Column(name = "IS_VIRTUAL")

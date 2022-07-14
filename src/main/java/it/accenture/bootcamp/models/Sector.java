@@ -15,7 +15,10 @@ import javax.persistence.*;
 public class Sector {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private long id;
-    @Column
+    @Column(name = "NAME")
     private String name;
+    @Column(name = "DESCRIPTION")
+    private String descriptions;
 }

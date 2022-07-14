@@ -16,15 +16,14 @@ public class CourseDTO {
     private Integer duration;
     private String courseLevel;
     private String description;
-    private long sectorId;
+    private double price;
 
     public static CourseDTO fromCourse(Course c) {
-        return new CourseDTO(c.getId(), c.getTitle(), c.getDuration(), c.getCourseLevel(), c.getDescription(),
-                c.getSectorId());
+        return new CourseDTO(c.getId(), c.getTitle(), c.getHoursCourse(), c.getCourseLevel(), c.getDescription(),c.getPrice());
     }
 
     public Course toCourse() {
         return new Course(this.getId(), this.getTitle(), this.getDuration(), this.getCourseLevel(),
-                this.getDescription(), this.getSectorId());
+                this.getDescription(), this.getPrice());
     }
 }
