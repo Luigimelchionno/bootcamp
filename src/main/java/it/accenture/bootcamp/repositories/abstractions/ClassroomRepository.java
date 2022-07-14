@@ -3,18 +3,27 @@ package it.accenture.bootcamp.repositories.abstractions;
 import java.util.Optional;
 
 import it.accenture.bootcamp.models.Classroom;
+import org.springframework.context.annotation.Profile;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ClassroomRepository {
+@Repository
+@Profile("jpa")
+public interface ClassroomRepository extends JpaRepository<Classroom, Long> {
 
-    Iterable<Classroom> findAll();
 
-    void delete(Classroom c);
 
-    void deleteById(long id);
+//    Iterable<Classroom> findAll();
+//
+//    void delete(Classroom c);
+//
+//    void deleteById(long id);
+//
+//    Optional<Classroom> findById(long id);
+//
+//    Classroom save(Classroom c);
+//
+//    boolean existsById(long id);
 
-    Optional<Classroom> findById(long id);
 
-    Classroom save(Classroom c);
-
-    boolean existsById(long id);
 }

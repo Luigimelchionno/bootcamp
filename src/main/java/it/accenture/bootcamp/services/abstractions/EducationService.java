@@ -5,8 +5,10 @@ import java.util.Optional;
 import it.accenture.bootcamp.exceptions.EntityNotFoundException;
 import it.accenture.bootcamp.models.Classroom;
 import it.accenture.bootcamp.models.Course;
+import it.accenture.bootcamp.models.Sector;
 
 public interface EducationService {
+
 
     Iterable<Classroom> getAllClassrooms();
 
@@ -31,5 +33,7 @@ public interface EducationService {
     Course saveOrUpdateCourse(Course c) throws EntityNotFoundException;
 
     boolean courseExists(long id);
+
+    Iterable<Sector> getAllSectors();
 
 }

@@ -2,6 +2,11 @@ package it.accenture.bootcamp.services.implementations;
 
 import java.util.Optional;
 
+import it.accenture.bootcamp.models.Sector;
+import it.accenture.bootcamp.repositories.abstractions.CourseRepository;
+import it.accenture.bootcamp.repositories.abstractions.SectorRepository;
+import it.accenture.bootcamp.services.abstractions.CrudService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,20 +19,40 @@ import it.accenture.bootcamp.repositories.abstractions.GenericsRepository;
 import it.accenture.bootcamp.services.abstractions.EducationService;
 
 @Service
+//@AllArgsConstructor
 public class EducationServiceImpl implements EducationService {
+    private CrudService<Classroom, Long, ClassroomRepository> crudClassroom;
+    private CrudService<Course, Long, CourseRepository> crudCourse;
+    private CrudService<Sector, Long, SectorRepository> crudSector;
     private ClassroomRepository classroomRepo;
-    private GenericsRepository<Long, Course> courseRepo;
+    private SectorRepository sectorRepo;
+    private CourseRepository courseRepo;
     public static final String ERROR_NOT_FOUND = "L'entità %s con id %d non esiste";
 
     @Autowired
-    public EducationServiceImpl(ClassroomRepository classroomRepo, GenericsRepository<Long, Course> courseRepo) {
+    public EducationServiceImpl(CrudService<Classroom, Long, ClassroomRepository> crudClassroom,
+                                CrudService<Course, Long, CourseRepository> crudCourse,
+                                CrudService<Sector, Long, SectorRepository> crudSector,
+                                ClassroomRepository classroomRepo, CourseRepository courseRepo,
+                                SectorRepository sectorRepo
+                                ) {
+        this.crudClassroom = crudClassroom;
+        this.crudCourse = crudCourse;
+        this.crudSector = crudSector;
         this.classroomRepo = classroomRepo;
         this.courseRepo = courseRepo;
+        this.sectorRepo = sectorRepo;
     }
 
     @Override
     public Iterable<Classroom> getAllClassrooms() {
-        return classroomRepo.findAll();
+//        return classroomRepo.findAll();
+        return crudClassroom.getAll();
+    }
+
+    @Override
+    public Iterable<Course> getAllCourses() {
+        return courseRepo.findAll();
     }
 
     @Transactional
@@ -46,7 +71,6 @@ public class EducationServiceImpl implements EducationService {
     public void deleteClassroomById(long id) throws EntityNotFoundException {
         if (classroomExists(id)) {
             classroomRepo.deleteById(id);
-            ;
         } else {
             throw new EntityNotFoundException(ERROR_NOT_FOUND, Classroom.class, id);
         }
@@ -72,10 +96,7 @@ public class EducationServiceImpl implements EducationService {
         return classroomRepo.existsById(id);
     }
 
-    @Override
-    public Iterable<Course> getAllCourses() {
-        return courseRepo.findAll();
-    }
+
 
     @Transactional
     @Override
@@ -93,7 +114,7 @@ public class EducationServiceImpl implements EducationService {
     public void deleteCourseById(long id) throws EntityNotFoundException {
         if (courseExists(id)) {
             courseRepo.deleteById(id);
-            ;
+
         } else {
             throw new EntityNotFoundException(ERROR_NOT_FOUND, Course.class, id);
         }
@@ -118,5 +139,10 @@ public class EducationServiceImpl implements EducationService {
     public boolean courseExists(long id) {
         return courseRepo.existsById(id);
     }
+
+    public Iterable<Sector> getAllSectors() {
+        return sectorRepo.findAll();
+    }
+
 
 }
