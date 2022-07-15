@@ -1,15 +1,13 @@
 package it.accenture.bootcamp.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Getter
 @Setter
@@ -36,4 +34,8 @@ public class Classroom {
     private Boolean isComputerized;
     @Column(name = "IS_VIRTUAL")
     private boolean isVirtual;
+    @OneToMany(mappedBy="classroom")
+    private Set<Edition> editions;
+    @OneToMany(mappedBy="classroom")
+    private Set<Lesson> lessons;
 }

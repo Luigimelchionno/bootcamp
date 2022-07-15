@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,4 +22,6 @@ public class Sector {
     private String name;
     @Column(name = "DESCRIPTION")
     private String descriptions;
+    @OneToMany(mappedBy = "sector")
+    private Set<Tutor> tutors;
 }
