@@ -12,23 +12,20 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "student_evaluation")
-public class StudentEvaluation {
+@Table(name = "TEACHER_COMPETENCE")
+public class TeacherCompetence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     private Long id;
-    @Column(name = "GRADE")
-    private double grade;
-    @Column(name = "COMMENTS")
-    private String comments;
-    @ManyToOne
-    @JoinColumn(name = "MODULE_ID", referencedColumnName = "ID")
-    private Module module;
-    @ManyToOne
-    @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID")
-    private Student student;
+    @Column(name = "SKILL_LEVEL", nullable = false)
+    private String skillLevel;
 
-
+    @ManyToOne
+    @JoinColumn(name = "TEACHER_ID")
+    private Teacher teacher;
+    @ManyToOne
+    @JoinColumn(name = "SKILL_ID")
+    private Teacher skill;
 
 }

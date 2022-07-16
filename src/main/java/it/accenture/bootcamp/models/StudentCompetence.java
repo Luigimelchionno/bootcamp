@@ -1,33 +1,33 @@
 package it.accenture.bootcamp.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "student_competence")
+@Table(name = "STUDENT_COMPETENCE")
 public class StudentCompetence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     private Long id;
-
+    @Column(name = "SKILL_LEVEL", nullable = false)
+    private String skillLevel;
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "STUDENT_ID")
     private Student student;
 
-    public Student getStudent() {
-        return student;
-    }
+    @ManyToOne
+    @JoinColumn(name = "SKILL_ID")
+    private Skill skill;
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 }

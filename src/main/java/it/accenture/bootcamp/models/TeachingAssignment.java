@@ -6,37 +6,30 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "lesson")
-public class Lesson {
+@Table(name = "TEACHING_ASSIGNMENT")
+public class TeachingAssignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     private Long id;
-    @Column(name = "START_DATE")
-    private LocalDate startDate;
-    @Column(name = "END_DATE")
-    private LocalDate endDate;
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRIPTION", nullable = false)
     private String description;
+
     @ManyToOne
     @JoinColumn(name = "MODULE_ID", referencedColumnName = "ID")
     private Module module;
-
     @ManyToOne
     @JoinColumn(name = "TEACHER_ID", referencedColumnName = "ID")
     private Teacher teacher;
-    @ManyToOne
-    @JoinColumn(name = "CLASSROOM_ID", referencedColumnName = "ID")
-    private Classroom classroom;
-    @OneToMany(mappedBy="lesson")
-    private Set<Presence> presences;
+
+    @OneToMany(mappedBy = "teachingAssignment")
+    private List<TeacherEvaluation> teacherEvaluations;
 
 }

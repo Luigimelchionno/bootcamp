@@ -27,19 +27,22 @@ public class Edition {
     private LocalDate endDate;
     @Column(name = "COURSE_TYPE")
     private String courseType;
+    @Column(name = "CODE")
+    private String code;
+    @Column(name = "PRICE")
+    private double price;
     @ManyToOne
     @JoinColumn(name="COURSE_ID", nullable=false)
     private Course course;
     @ManyToOne
     @JoinColumn(name="CLASSROOM_ID", nullable=false)
     private Classroom classroom;
-    @Column(name = "CODE")
-    private String code;
-    @Column(name = "PRICE")
-    private double price;
+
     @ManyToOne
-    @JoinColumn(name="TUTOR_ID", nullable=false)
+    @JoinColumn(name="TUTOR_ID", referencedColumnName = "ID", nullable=false)
     private Tutor tutor;
     @OneToMany(mappedBy="edition")
     private Set<Registration> registrations;
+    @OneToMany(mappedBy = "edition", fetch = FetchType.EAGER)
+    private Set<Module> modules;
 }

@@ -26,9 +26,9 @@ public class Presence {
     @Column(name = "DETAILS")
     private String details;
     @ManyToOne
-    @JoinColumn(name = "LESSON_ID")
+    @JoinColumn(name = "LESSON_ID", referencedColumnName = "ID")
     private Lesson lesson;
     @ManyToOne
-    @JoinColumn(name = "STUDENT_ID")
+    @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID")
     private Student student;
 }

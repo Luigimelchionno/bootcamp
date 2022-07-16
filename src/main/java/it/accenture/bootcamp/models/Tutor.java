@@ -31,11 +31,9 @@ public class Tutor {
     private String phoneNumber;
     @Column(name = "ADDRESS")
     private String address;
-    @Column(name = "SECTOR_ID")
-    private String sectorId;
-    @OneToMany(mappedBy="tutor")
-    private Set<Edition> editions;
+    //@OneToMany(mappedBy="tutor")
+    //private Set<Edition> editions;
     @ManyToOne
-    @JoinColumn(name="SECTOR_ID", nullable=false)
+    @JoinColumn(name="SECTOR_ID", referencedColumnName = "ID", nullable=false)
     private Sector sector;
 }

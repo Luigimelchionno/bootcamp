@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class Registration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "ID")
     private long id;
     @Column(name = "REGISTRATION_DATE")
     private LocalDate registrationDate;
@@ -34,9 +34,9 @@ public class Registration {
     @Column(name = "NUMERICAL_EVALUATION_FROM_STUDENT")
     private int numericalEvaluationFromStudent;
     @ManyToOne
-    @JoinColumn(name="COURSE_EDITION_ID", nullable=false)
+    @JoinColumn(name="COURSE_EDITION_ID", referencedColumnName = "ID", nullable=false)
     private Edition edition;
     @ManyToOne
-    @JoinColumn(name="STUDENT_ID", nullable=false)
+    @JoinColumn(name="STUDENT_ID", referencedColumnName = "ID", nullable=false)
     private Student student;
 }

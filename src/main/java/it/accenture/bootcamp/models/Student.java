@@ -36,7 +36,7 @@ public class Student {
     @OneToMany(mappedBy="student")
     private Set<Presence> presences;
     @OneToMany(mappedBy = "student")
-    private Set<StudentEvaluation> studentEvaluations = new java.util.LinkedHashSet<>();
+    private Set<StudentEvaluation> studentEvaluations;
     @OneToMany(mappedBy="student")
-    private Set<StudentCompetence> studentCompetences = new java.util.LinkedHashSet<>();
+    private Set<StudentCompetence> studentCompetences;
 }
