@@ -8,6 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Profile("jpa")
 public interface SectorRepository extends JpaRepository<Sector, Long> {
-
-
 }

@@ -21,8 +21,8 @@ import it.accenture.bootcamp.repositories.abstractions.ClassroomRepository;
 
 @Repository
 @Profile("jdbc")
-public class JdbcClassroomRepository implements ClassroomRepository {
-
+public class JdbcClassroomRepository  {
+/*
     private JdbcTemplate template;
 
     @Autowired
@@ -219,5 +219,5 @@ public class JdbcClassroomRepository implements ClassroomRepository {
 //        // TODO Auto-generated method stub
 //        return false;
 //    }
-
+*/
 }

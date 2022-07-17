@@ -2,6 +2,7 @@ package it.accenture.bootcamp.models;
 
 import javax.persistence.*;
 
+import it.accenture.bootcamp.models.abstraction.WithId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 
 @Entity
-public class Classroom {
+public class Classroom implements WithId<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -38,4 +39,12 @@ public class Classroom {
     private Set<Edition> editions;
     @OneToMany(mappedBy="classroom")
     private Set<Lesson> lessons;
+
+    @Override
+    public void setId(Long id) {
+
+    }
+    public Long getId(){
+        return this.id;
+    }
 }

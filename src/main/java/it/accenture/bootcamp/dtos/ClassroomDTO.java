@@ -20,13 +20,4 @@ public class ClassroomDTO {
     private Boolean isComputerized;
     private boolean isVirtual;
 
-    public static ClassroomDTO fromClassroom(Classroom c) {
-        return new ClassroomDTO(c.getId(), c.getName(), c.getCapacity(), c.getConnectionSoftware(), c.getHasProjector(),
-                c.getHasMainComputer(), c.getIsComputerized(), c.isVirtual());
-    }
-
-    public Classroom toClassroom() {
-        return new Classroom(this.id, this.name, this.capacity, this.software, this.hasProjector, this.hasMainPc,
-                this.isComputerized, this.isVirtual());
-    }
 }

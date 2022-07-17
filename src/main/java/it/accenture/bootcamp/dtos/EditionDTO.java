@@ -19,8 +19,8 @@ public class EditionDTO {
     private long classroomId;
     private String classroomName;
 
-    public static EditionDTO fromEdition(Edition e) {
+    /*public static EditionDTO fromEdition(Edition e) {
         return new EditionDTO(e.getId(), e.getStartDate().toString(), e.getEndDate().toString(), e.getCourse().getId(),
                 e.getCourse().getTitle(), e.getClassroom().getId(), e.getClassroom().getName());
-    }
+    }*/
 }

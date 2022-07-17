@@ -18,12 +18,4 @@ public class CourseDTO {
     private String description;
     private double price;
 
-    public static CourseDTO fromCourse(Course c) {
-        return new CourseDTO(c.getId(), c.getTitle(), c.getHoursCourse(), c.getCourseLevel(), c.getDescription(),c.getPrice());
-    }
-
-    public Course toCourse() {
-        return new Course(this.getId(), this.getTitle(), this.getDuration(), this.getCourseLevel(),
-                this.getDescription(), this.getPrice());
-    }
 }

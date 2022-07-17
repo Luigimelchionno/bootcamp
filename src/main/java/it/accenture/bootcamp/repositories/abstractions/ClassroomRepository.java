@@ -11,19 +11,4 @@ import org.springframework.stereotype.Repository;
 @Profile("jpa")
 public interface ClassroomRepository extends JpaRepository<Classroom, Long> {
 
-
-
-//    Iterable<Classroom> findAll();
-//
-//    void delete(Classroom c);
-//
-//    void deleteById(long id);
-//
-//    Optional<Classroom> findById(long id);
-//
-//    Classroom save(Classroom c);
-//
-//    boolean existsById(long id);
-
-
 }

@@ -14,4 +14,5 @@ public class JpaEntityCourseRepository extends JpaGenericsRepository<Long, Cours
     public JpaEntityCourseRepository(EntityManager em) {
         super(Course.class, em);
     }
+
 }

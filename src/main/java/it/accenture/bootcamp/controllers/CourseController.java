@@ -1,21 +1,14 @@
-package it.accenture.bootcamp.controllers;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
+import it.accenture.bootcamp.mapstruct.CourseMapper;
+import it.accenture.bootcamp.services.implementations.CourseCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import it.accenture.bootcamp.dtos.CourseDTO;
 import it.accenture.bootcamp.exceptions.EntityNotFoundException;
@@ -26,32 +19,34 @@ import it.accenture.bootcamp.services.abstractions.EducationService;
 @RequestMapping("course")
 public class CourseController {
     private EducationService eduService;
+    private CourseCrudService crudService;
 
     @Autowired
-    public CourseController(EducationService eduService) {
+    public CourseController(EducationService eduService, CourseCrudService crudService) {
         this.eduService = eduService;
+        this.crudService = crudService;
     }
 
     @GetMapping
     public ResponseEntity<Iterable<CourseDTO>> getAll() {
-        var cls = eduService.getAllCourses();
-        var dtos = StreamSupport.stream(cls.spliterator(), false).map(CourseDTO::fromCourse).toList();
+        var cls = crudService.getAll();
+        var dtos = StreamSupport.stream(cls.spliterator(), false).map(CourseMapper.INSTANCE::fromCourse).toList();
         return ResponseEntity.ok(dtos);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<CourseDTO> findById(@PathVariable long id) {
-        Optional<Course> optClass = eduService.findCourseById(id);
+        Optional<Course> optClass = crudService.findById(id);
         if (optClass.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(optClass.map(CourseDTO::fromCourse).get());
+        return ResponseEntity.ok(optClass.map(CourseMapper.INSTANCE::fromCourse).get());
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<String> deleteById(@PathVariable long id) {
         try {
-            eduService.deleteCourseById(id);
+            crudService.deleteById(id);
             return ResponseEntity.noContent().build();
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -60,10 +55,10 @@ public class CourseController {
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody CourseDTO cdto) {
-        Course c = cdto.toCourse();
+        Course c = CourseMapper.INSTANCE.toCourse(cdto);
         try {
-            Course cSaved = eduService.saveOrUpdateCourse(c);
-            var dto = CourseDTO.fromCourse(cSaved);
+            Course cSaved = crudService.saveOrUpdate(c);
+            var dto = CourseMapper.INSTANCE.fromCourse(cSaved);
             URI uri = new URI("localhost:8080/course/" + cdto.getId());
             return ResponseEntity.created(uri).body(dto);
         } catch (URISyntaxException e) {
@@ -75,10 +70,10 @@ public class CourseController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@RequestBody CourseDTO cdto, @PathVariable long id) {
-        Course c = cdto.toCourse();
+        Course c = CourseMapper.INSTANCE.toCourse(cdto);
         try {
-            Course cSaved = eduService.saveOrUpdateCourse(c);
-            CourseDTO dto = CourseDTO.fromCourse(cSaved);
+            Course cSaved = crudService.saveOrUpdate(c);
+            CourseDTO dto = CourseMapper.INSTANCE.fromCourse(cSaved);
             return ResponseEntity.ok(dto);
 
         } catch (EntityNotFoundException e) {
