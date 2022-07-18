@@ -166,4 +166,24 @@ public class JdbcCourseRepository implements CourseRepository {
     public <S extends Course, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
+
+    @Override
+    public Optional<Course> findByTitle(String title) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Course> findBySectorName(String sectorName) {
+        return null;
+    }
+
+    @Override
+    public List<Course> findByTitleContainingIgnoreCase(String like) {
+        return null;
+    }
+
+    @Override
+    public Iterable<Course> findByHoursCourseGreaterThanAndPriceLessThan(int d, int c) {
+        return null;
+    }
 }

@@ -13,7 +13,7 @@ import lombok.Setter;
 public class CourseDTO {
     private long id;
     private String title;
-    private Integer duration;
+    private Integer hoursCourse;
     private String courseLevel;
     private String description;
     private double price;
