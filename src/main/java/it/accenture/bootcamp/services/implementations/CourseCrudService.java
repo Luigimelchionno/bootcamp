@@ -5,6 +5,7 @@ import it.accenture.bootcamp.repositories.abstractions.CourseRepository;
 import it.accenture.bootcamp.repositories.abstractions.EditionRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,5 +31,8 @@ public class CourseCrudService extends CrudService<Course, Long, CourseRepositor
     public List<Edition> findEditionsByCourse(long id) {
         return editionRepo.findByCourseId(id);
     }
-   
+    public List<Course> findCourseWithoutEdition(){
+
+
+    }
 }
