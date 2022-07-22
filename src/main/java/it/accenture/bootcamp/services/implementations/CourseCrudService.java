@@ -18,7 +18,7 @@ public class CourseCrudService extends CrudService<Course, Long, CourseRepositor
         this.editionRepo = editionRepo;
     }
     public Iterable<Course> findBySectorName(String sectorName) {
-        return repo.findBySectorName(sectorName);
+        return repo.findAll();
     }
     public Iterable<Course> findByHoursCourseGreaterThanAndPriceLessThan(int d, int c){
         return repo.findByHoursCourseGreaterThanAndPriceLessThan(d,c);
@@ -31,8 +31,8 @@ public class CourseCrudService extends CrudService<Course, Long, CourseRepositor
     public List<Edition> findEditionsByCourse(long id) {
         return editionRepo.findByCourseId(id);
     }
-    public List<Course> findCourseWithoutEdition(){
+   /* public List<Course> findCourseWithoutEdition(){
 
 
-    }
+    }*/
 }

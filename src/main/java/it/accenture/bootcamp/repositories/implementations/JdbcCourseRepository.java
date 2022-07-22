@@ -172,10 +172,10 @@ public class JdbcCourseRepository implements CourseRepository {
         return Optional.empty();
     }
 
-    @Override
-    public List<Course> findBySectorName(String sectorName) {
+    //@Override
+    /*public List<Course> findBySectorName(String sectorName) {
         return null;
-    }
+    }*/
 
     @Override
     public List<Course> findByTitleContainingIgnoreCase(String like) {

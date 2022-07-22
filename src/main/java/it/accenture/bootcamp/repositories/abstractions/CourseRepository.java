@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface CourseRepository extends JpaRepository<Course, Long> {
     Optional<Course> findByTitle(String title);
     //TODO
-    List<Course> findBySectorName(String sectorName); // non abbiamo sector in course FCL
+   // List<Course> findBySectorName(String sectorName); // non abbiamo sector in course FCL
     //List<Course> findBySectorNameAndTitleLike(String sectorName, String like);
     List<Course> findByTitleContainingIgnoreCase(String like);
 

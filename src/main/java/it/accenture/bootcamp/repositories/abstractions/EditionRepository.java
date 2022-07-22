@@ -14,5 +14,7 @@ import java.util.List;
 public interface EditionRepository extends JpaRepository<Edition, Long> {
     @Query("SELECT e FROM Edition e WHERE e.course.id = :id")
     List<Edition> findByCourseId(@Param("id") long id);
-    @Query("SELECT c FROM Course c WHERE c.id NOT EXIST (SELECT e.course.id FROM Edition e)")
+    //@Query("SELECT c FROM Course c WHERE c.id NOT EXIST (SELECT e.course.id FROM Edition e)")
+
+    List<Edition> findTop4ByOrderStartdateDesc();
 }

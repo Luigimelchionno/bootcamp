@@ -23,6 +23,7 @@ import it.accenture.bootcamp.services.abstractions.EducationService;
 
 @RestController
 @RequestMapping("course")
+@CrossOrigin
 public class CourseController {
     private EducationService eduService;
     private CourseCrudService crudService;
@@ -33,12 +34,12 @@ public class CourseController {
         this.crudService = crudService;
     }
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<Iterable<CourseDTO>> getAll() {
         var cls = crudService.getAll();
         var dtos = StreamSupport.stream(cls.spliterator(), false).map(CourseMapper.INSTANCE::fromCourse).toList();
         return ResponseEntity.ok(dtos);
-    }
+    }*/
     @GetMapping
     public ResponseEntity<Iterable<CourseDTO>> getCourses(@RequestParam(required = false) String sectorName,
                                                           @RequestParam(required = false) String like) {
