@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.accenture.bootcamp.dtos.EditionDTO;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -38,11 +40,12 @@ public class EditionController {
         // return editions.stream().map(EditionDTO::fromEdition).toList();
         return null;
     }
-    @GetMapping
-    public Iterable<EditionDTO> getLatest4Editions(@PathVariable Date date){
+    @GetMapping("latest4")
+    public ResponseEntity<Iterable<EditionDTO>> getLatest4Editions(){
+        LocalDate localDate = LocalDate.now();
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         List<Edition> editions =  crudService.findLatestEdition(date);
         var dtos = editions.stream().map(EditionMapper.INSTANCE::fromEdition).toList();
         return ResponseEntity.ok(dtos);
-        return ;
     }
 }
