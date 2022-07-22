@@ -1,5 +1,8 @@
 package it.accenture.bootcamp.repositories.abstractions;
 
+import it.accenture.bootcamp.models.Edition;
+
+import java.util.List;
 import java.util.Optional;
 
 public interface GenericsRepository<K, T> {
@@ -14,4 +17,5 @@ public interface GenericsRepository<K, T> {
     T save(T c);
 
     boolean existsById(K id);
+
 }

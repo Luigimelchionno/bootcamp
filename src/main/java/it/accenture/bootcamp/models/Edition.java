@@ -1,5 +1,6 @@
 package it.accenture.bootcamp.models;
 
+import it.accenture.bootcamp.models.abstraction.WithId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "COURSE_EDITION")
-public class Edition {
+public class Edition  implements WithId<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -45,4 +46,8 @@ public class Edition {
     private Set<Registration> registrations;
     @OneToMany(mappedBy = "edition", fetch = FetchType.EAGER)
     private Set<Module> modules;
+
+    @Override
+    public void setId(Long id) {
+    }
 }

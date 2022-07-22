@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -14,7 +16,6 @@ import java.util.List;
 public interface EditionRepository extends JpaRepository<Edition, Long> {
     @Query("SELECT e FROM Edition e WHERE e.course.id = :id")
     List<Edition> findByCourseId(@Param("id") long id);
-    //@Query("SELECT c FROM Course c WHERE c.id NOT EXIST (SELECT e.course.id FROM Edition e)")
+    List<Edition> findTop4ByStartdateAfterOrderStartdateAsc(Date date);
 
-    List<Edition> findTop4ByOrderStartdateDesc();
 }

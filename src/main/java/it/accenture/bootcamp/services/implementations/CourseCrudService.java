@@ -31,8 +31,5 @@ public class CourseCrudService extends CrudService<Course, Long, CourseRepositor
     public List<Edition> findEditionsByCourse(long id) {
         return editionRepo.findByCourseId(id);
     }
-   /* public List<Course> findCourseWithoutEdition(){
 
-
-    }*/
 }
